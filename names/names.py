@@ -1,5 +1,6 @@
 import time
 
+
 start_time = time.time()
 
 f = open('names_1.txt', 'r')
@@ -13,10 +14,17 @@ f.close()
 duplicates = []  # Return the list of duplicates in this data structure
 
 # Replace the nested for loops below with your improvements
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+# for name_1 in names_1:
+#     for name_2 in names_2:
+#         if name_1 == name_2:
+#             duplicates.append(name_1)
+# the original solution had a quadratic runtime O(N^2)
+# it runs in about 12 seconds on my computer
+set1 = set(names_1)
+set2 = set(names_2)
+duplicates = list(set1.intersection(set2))
+# this solution that uses sets runs in linear runtime O(N)
+# it runs in under half a second on my computer
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
